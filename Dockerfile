@@ -5,16 +5,19 @@ ENV SCRIPT_EXPORTER_VERSION=v2.1.2
 
 RUN apk add tar curl ca-certificates bash
 
+# https://install.speedtest.net/app/cli/ookla-speedtest-1.0.0-x86_64-linux.tgz
+# https://install.speedtest.net/app/cli/ookla-speedtest-1.1.1-linux-x86_64.tgz
+
 RUN ARCH=$(apk info --print-arch) && \
     echo ARCH=$ARCH && \
     case "$ARCH" in \
-      x86) _arch=i386 ;; \
+      x86) _arch=x86_64 ;; \
       armv7) _arch=armhf ;; \
       *) _arch="$ARCH" ;; \
     esac && \
-    echo https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-${SPEEDTEST_VERSION}-${_arch}-linux.tgz && \
+    echo https://install.speedtest.net/app/cli/ookla-speedtest-${SPEEDTEST_VERSION}-${_arch}-linux.tgz && \
     curl -fsSL -o /tmp/ookla-speedtest.tgz \
-      https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-${SPEEDTEST_VERSION}-${_arch}-linux.tgz && \
+      https://install.speedtest.net/app/cli/ookla-speedtest-${SPEEDTEST_VERSION}-${_arch}-linux.tgz && \
     tar xvfz /tmp/ookla-speedtest.tgz -C /usr/local/bin speedtest && \
     rm -rf /tmp/ookla-speedtest.tgz
 

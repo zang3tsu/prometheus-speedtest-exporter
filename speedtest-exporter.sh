@@ -13,4 +13,4 @@ while IFS=$'\t' read -r servername serverid latency jitter packetloss download u
     printMetric "speedtest_upload_bytes" "Upload Speed" "gauge" "$upload"
     printMetric "speedtest_downloadedbytes_bytes" "Downloaded Bytes" "gauge" "$downloadedbytes"
     printMetric "speedtest_uploadedbytes_bytes" "Uploaded Bytes" "gauge" "$uploadedbytes"
-done < <(/usr/local/bin/speedtest --accept-license --accept-gdpr -f tsv)
+done < <(/usr/local/bin/speedtest --accept-license --accept-gdpr -f tsv -s 13058)
